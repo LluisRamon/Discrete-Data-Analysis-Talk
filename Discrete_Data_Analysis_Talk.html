@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="Discrete_Data_Analysis_Talk_files/reveal.js-2.6.1/css/reveal.min.css"/>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+     .reveal .title {
+        margin-top: 125px;
+        margin-bottom: 50px;
+     }
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+
+<link rel="stylesheet" href="Discrete_Data_Analysis_Talk_files/reveal.js-2.6.1/css/theme/simple.css" id="theme">
+
+
+<link rel="stylesheet" media="print" href="Discrete_Data_Analysis_Talk_files/reveal.js-2.6.1/css/print/pdf.css" />
+
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="extended-truncated-inverse-gaussianpoisson-model" class="slide level1">
+<h1>Extended truncated Inverse Gaussian–Poisson model</h1>
+<h2 id="with-r-examples">(with R examples)</h2>
+<p><br></p>
+<h3 id="lluis-ramon">Lluís Ramon</h3>
+<h3 id="may-9-2014">May 9, 2014</h3>
+</section>
+<section id="summary" class="slide level1">
+<h1>Summary</h1>
+<p><br></p>
+<h2 id="parameter-extension-of-tpig">Parameter extension of tPIG</h2>
+<h2 id="fitting-a-case-example">Fitting a case example</h2>
+</section>
+<section id="word-frequency-word-data" class="slide level1">
+<h1>Word frequency word data</h1>
+<p><br></p>
+<section>
+
+<ul>
+<li>Modeling word frequency count data</li>
+<li>Studying author’s style through its vocabulary</li>
+</ul>
+<p><br></p>
+<h2 id="tm-package-text-mining">tm package (Text Mining)</h2>
+<p><br></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;tm&quot;</span>)
+?PlainTextDocument
+?removePunctuation
+?termFreq</code></pre>
+</section>
+<section class="slide level1">
+
+<pre class="sourceCode r"><code class="sourceCode r">chap5 &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;data/Tirant lo Blanc Chapter 5&quot;</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>)
+
+<span class="kw">library</span>(<span class="st">&quot;tm&quot;</span>)
+chap5 &lt;-<span class="st"> </span><span class="kw">PlainTextDocument</span>(chap5)
+chap5 &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;&#39;&quot;</span>, <span class="st">&quot; &quot;</span>, chap5)
+chap5 &lt;-<span class="st"> </span><span class="kw">removePunctuation</span>(chap5)
+
+freq_chap5 &lt;-<span class="st"> </span><span class="kw">termFreq</span>(chap5)
+<span class="kw">table</span>(freq_chap5)</code></pre>
+<pre><code>## freq_chap5
+##   1   2   3   4   5   6   7   9  10  11  13  17  18  20  21  22  34 
+## 299  49  23  15   6   5   1   1   1   1   1   1   1   1   1   1   1</code></pre>
+<p><br></p>
+<ul>
+<li>Different versions</li>
+<li>Remove punctuation, capital letters, etc</li>
+</ul>
+</section>
+
+</section>
+<section id="distributions" class="slide level1">
+<h1>Distributions</h1>
+<p><br></p>
+<ul>
+<li>Inverse Gaussian (IG)</li>
+<li>IG-Poisson mixture</li>
+<li>Truncated IG-Poisson mixture.</li>
+<li>Extended Truncated IG-Poisson mixture</li>
+</ul>
+<p><br></p>
+<h2 id="gamlss-package">gamlss package</h2>
+<p><br></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gamlss)
+?IG <span class="co"># Inverse Gaussian distribution</span>
+?dIG
+
+?PIG <span class="co"># Poisson-inverse Gaussian distribution</span>
+?dPIG</code></pre>
+</section>
+<section id="inverse-gaussian" class="slide level1">
+<h1>Inverse Gaussian</h1>
+<p><br></p>
+<section>
+
+<p><span class="math">\(f(x|\mu,\lambda) = \left(\frac{\lambda}{2\pi x^3}\right)^{1/2} \exp\left(\frac{-\lambda (x-\mu)^2}{2 \mu^2 x}\right),  x \in (0,  \infty)\)</span></p>
+<p><br></p>
+<ul>
+<li>Continuous distribution</li>
+<li>Not a true <em>“inverse”</em></li>
+</ul>
+</section>
+<section class="slide level1">
+
+<p><img src="Discrete_Data_Analysis_Talk_files/figure-revealjs/IG_plot.png" alt="plot of chunk IG plot" /></p>
+</section>
+<section class="slide level1">
+
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;gamlss&quot;</span>)
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="fl">2.5</span>, <span class="dt">by =</span> <span class="fl">0.02</span>)
+IG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="dv">5</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 5)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+IG2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+IG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+IG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+
+IG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(IG1, IG2, IG3, IG4)
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">qplot</span>(x, y, <span class="dt">data =</span> IG_prior, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="dt">col =</span> dist)</code></pre>
+</section>
+
+</section>
+<section id="inverse-gaussianpoisson-model" class="slide level1">
+<h1>Inverse Gaussian–Poisson model</h1>
+<p><br></p>
+<section>
+
+<p><span class="math">\(e^{\alpha \sqrt{(1 -\theta)}} \sqrt{ \frac{2 \alpha}{\pi}} \frac{(\frac{1}{2} \alpha \theta)^r}{r!} K_{r - \frac{1}{2}}(\alpha)\)</span></p>
+<p><br></p>
+<ul>
+<li><span class="math">\(K_y\)</span> third kind modified Bessel function</li>
+<li>Mixture of a discrete distribution with a continuous distribution</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<p><img src="Discrete_Data_Analysis_Talk_files/figure-revealjs/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3" /></p>
+</section>
+<section class="slide level1">
+
+<pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">0</span>:<span class="dv">10</span>
+PIG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">5</span>, <span class="dv">5</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(5, 5)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+PIG2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+PIG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+PIG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+
+PIG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(PIG1, PIG2, PIG3, PIG4)
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">qplot</span>(x, y, <span class="dt">data =</span> PIG_prior, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">col =</span> dist) +<span class="st"> </span><span class="kw">facet_grid</span>(.~<span class="st"> </span>dist)</code></pre>
+</section>
+
+</section>
+<section id="truncated-inverse-gaussianpoisson-model" class="slide level1">
+<h1>truncated Inverse Gaussian–Poisson model</h1>
+<p><br></p>
+<section>
+
+<ul>
+<li>No words written 0 times</li>
+<li>A left truncation in zero needed</li>
+<li>Conditional probability</li>
+</ul>
+<p><br></p>
+<p><span class="math">\[P(X = k | X &gt; 0) = \frac{P(X = k  \cap  X&gt; 0)}{1 - P(X = 0)}\]</span></p>
+<p><br></p>
+<h2 id="gamlss.tr-package">gamlss.tr package</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;gamlss.tr&quot;</span>)
+<span class="kw">trun.d</span>(<span class="dt">par =</span> <span class="dv">0</span>, <span class="dt">family =</span> <span class="st">&quot;PIG&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;left&quot;</span>)
+?trun.p; ?trun.q, ...</code></pre>
+</section>
+<section class="slide level1">
+
+<p><img src="Discrete_Data_Analysis_Talk_files/figure-revealjs/unnamed-chunk-6.png" alt="plot of chunk unnamed-chunk-6" /></p>
+</section>
+<section class="slide level1">
+
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;gamlss.tr&quot;</span>)
+dtPIG &lt;-<span class="st"> </span><span class="kw">trun.d</span>(<span class="dt">par =</span> <span class="dv">0</span>, <span class="dt">family =</span> <span class="st">&quot;PIG&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;left&quot;</span>)
+
+x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">8</span>
+tPIG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="fl">1.5</span>, <span class="dv">1</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+tPIG2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="dt">mu =</span> <span class="fl">1.5</span>, <span class="dt">sigma =</span> <span class="dv">4</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 2)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+tPIG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="fl">1.5</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+tPIG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="fl">1.5</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+
+tPIG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(tPIG1, tPIG2, tPIG3, tPIG4)
+
+<span class="kw">library</span>(ggplot2)
+<span class="kw">qplot</span>(x, y, <span class="dt">data =</span> tPIG_prior, <span class="dt">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="dt">col =</span> dist) +<span class="st"> </span><span class="kw">facet_grid</span>(.~<span class="st"> </span>dist)</code></pre>
+</section>
+
+</section>
+<section id="extended-truncated-inv.." class="slide level1">
+<h1>Extended truncated Inv..</h1>
+<section>
+
+<p><br></p>
+<ul>
+<li>Extend parametric space <span class="math">\(\alpha \in (-1, 0)\)</span></li>
+<li>Extended version = not extended if <span class="math">\(\alpha \geq 0\)</span></li>
+<li>Recurrent function for calculating the model</li>
+</ul>
+<p><img src="Discrete_Data_Analysis_Talk_files/figure-revealjs/contour_plots.png" alt="plot of chunk contour plots" /></p>
+</section>
+<section class="slide level1">
+
+<pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span>function(alpha, theta){
+  
+  <span class="fl">0.5</span>*alpha*theta/(<span class="kw">exp</span>(alpha*(<span class="dv">1</span> -<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">1</span> -theta))) -<span class="st"> </span><span class="dv">1</span>)
+  
+}
+
+p2 &lt;-<span class="st"> </span>function(alpha, theta){
+  
+  theta*(<span class="dv">1</span> +<span class="st"> </span>alpha)*<span class="kw">p1</span>(alpha, theta)/<span class="dv">4</span>  
+  
+}
+
+x &lt;-<span class="st"> </span><span class="kw">seq</span>(-<span class="dv">1</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> <span class="dv">26</span>)
+y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.75</span>, <span class="dv">1</span>, <span class="dt">length.out =</span> <span class="dv">26</span>)
+
+dadesP1 &lt;-<span class="st"> </span><span class="kw">sapply</span>(x, <span class="dt">FUN =</span> p1, y)
+dadesP2 &lt;-<span class="st"> </span><span class="kw">sapply</span>(x, <span class="dt">FUN =</span> p2, y)
+
+<span class="kw">colnames</span>(dadesP1) &lt;-<span class="st"> </span>y; <span class="kw">row.names</span>(dadesP1) &lt;-<span class="st"> </span>x
+<span class="kw">colnames</span>(dadesP2) &lt;-<span class="st"> </span>y; <span class="kw">row.names</span>(dadesP2) &lt;-<span class="st"> </span>x
+
+<span class="kw">par</span>(<span class="dt">mfcol =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">contour</span>(y, x, dadesP1, <span class="dt">main =</span> <span class="kw">expression</span>(P[<span class="dv">1</span>:n](alpha, theta)))
+<span class="kw">contour</span>(y, x, dadesP2, <span class="dt">main =</span> <span class="kw">expression</span>(P[<span class="dv">2</span>:n](alpha, theta)))
+<span class="kw">par</span>(<span class="dt">mfcol =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre>
+</section>
+
+</section>
+<section id="personal-opinion" class="slide level1">
+<h1>Personal opinion</h1>
+<p><br></p>
+<ul>
+<li>Full of details article</li>
+<li>Curious about <em>Not for comercial use</em></li>
+<li>Great to have code and data with the article</li>
+<li>Why not a Sichel? generalization with additional parameter</li>
+</ul>
+<div class="references">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script src="Discrete_Data_Analysis_Talk_files/reveal.js-2.6.1/lib/js/head.min.js"></script>
+  <script src="Discrete_Data_Analysis_Talk_files/reveal.js-2.6.1/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        transition: 'default',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: []});
+    </script>
+
+  <!-- dynamically load mathjax for compatibility with --self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+  </body>
+</html>
