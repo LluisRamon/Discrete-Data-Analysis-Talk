@@ -111,8 +111,8 @@ library("gamlss")
 x <- seq(0.1, 2.5, by = 0.02)
 IG1 <- data.frame(x = x, y = dIG(x, 1, 5), dist = "IG(1, 5)", stringsAsFactors= FALSE)
 IG2 <- data.frame(x = x, y = dIG(x, 1, 1), dist = "IG(1, 1)", stringsAsFactors= FALSE)
-IG3 <- data.frame(x = x, y = dIG(x, 1, 0.1), dist = "IG(1, 0.1)", stringsAsFactors= FALSE)
-IG4 <- data.frame(x = x, y = dIG(x, 1, 0.3), dist = "IG(1, 0.3)", stringsAsFactors= FALSE)
+IG3 <- data.frame(x = x, y = dIG(x, 1, 0.3), dist = "IG(1, 0.3)", stringsAsFactors= FALSE)
+IG4 <- data.frame(x = x, y = dIG(x, 1, 0.1), dist = "IG(1, 0.1)", stringsAsFactors= FALSE)
 
 IG_prior <- rbind(IG1, IG2, IG3, IG4)
 
@@ -127,8 +127,8 @@ library("gamlss")
 x <- seq(0.1, 2.5, by = 0.02)
 IG1 <- data.frame(x = x, y = dIG(x, 1, 5), dist = "IG(1, 5)", stringsAsFactors= FALSE)
 IG2 <- data.frame(x = x, y = dIG(x, 1, 1), dist = "IG(1, 1)", stringsAsFactors= FALSE)
-IG3 <- data.frame(x = x, y = dIG(x, 1, 0.1), dist = "IG(1, 0.1)", stringsAsFactors= FALSE)
-IG4 <- data.frame(x = x, y = dIG(x, 1, 0.3), dist = "IG(1, 0.3)", stringsAsFactors= FALSE)
+IG3 <- data.frame(x = x, y = dIG(x, 1, 0.3), dist = "IG(1, 0.3)", stringsAsFactors= FALSE)
+IG4 <- data.frame(x = x, y = dIG(x, 1, 0.1), dist = "IG(1, 0.1)", stringsAsFactors= FALSE)
 
 IG_prior <- rbind(IG1, IG2, IG3, IG4)
 
@@ -155,10 +155,10 @@ $e^{\alpha \sqrt{(1 -\theta)}} \sqrt{ \frac{2 \alpha}{\pi}} \frac{(\frac{1}{2} \
 
 ```{r,  echo = FALSE}
 x <- 0:10
-PIG1 <- data.frame(x = x, y = dPIG(x, 5, 5), dist = "PIG(5, 5)", stringsAsFactors= FALSE)
+PIG1 <- data.frame(x = x, y = dPIG(x, 1, 5), dist = "PIG(1, 5)", stringsAsFactors= FALSE)
 PIG2 <- data.frame(x = x, y = dPIG(x, 1, 1), dist = "PIG(1, 1)", stringsAsFactors= FALSE)
-PIG3 <- data.frame(x = x, y = dPIG(x, 1, 0.1), dist = "PIG(1, 0.1)", stringsAsFactors= FALSE)
-PIG4 <- data.frame(x = x, y = dPIG(x, 1, 0.3), dist = "PIG(1, 0.3)", stringsAsFactors= FALSE)
+PIG3 <- data.frame(x = x, y = dPIG(x, 1, 0.3), dist = "PIG(1, 0.3)", stringsAsFactors= FALSE)
+PIG4 <- data.frame(x = x, y = dPIG(x, 1, 0.1), dist = "PIG(1, 0.1)", stringsAsFactors= FALSE)
 
 PIG_prior <- rbind(PIG1, PIG2, PIG3, PIG4)
 
@@ -170,10 +170,10 @@ qplot(x, y, data = PIG_prior, geom = "point", col = dist) + facet_grid(.~ dist)
 
 ```{r, eval = FALSE}
 x <- 0:10
-PIG1 <- data.frame(x = x, y = dPIG(x, 5, 5), dist = "PIG(5, 5)", stringsAsFactors= FALSE)
+PIG1 <- data.frame(x = x, y = dPIG(x, 1, 5), dist = "PIG(1, 5)", stringsAsFactors= FALSE)
 PIG2 <- data.frame(x = x, y = dPIG(x, 1, 1), dist = "PIG(1, 1)", stringsAsFactors= FALSE)
-PIG3 <- data.frame(x = x, y = dPIG(x, 1, 0.1), dist = "PIG(1, 0.1)", stringsAsFactors= FALSE)
-PIG4 <- data.frame(x = x, y = dPIG(x, 1, 0.3), dist = "PIG(1, 0.3)", stringsAsFactors= FALSE)
+PIG3 <- data.frame(x = x, y = dPIG(x, 1, 0.3), dist = "PIG(1, 0.3)", stringsAsFactors= FALSE)
+PIG4 <- data.frame(x = x, y = dPIG(x, 1, 0.1), dist = "PIG(1, 0.1)", stringsAsFactors= FALSE)
 
 PIG_prior <- rbind(PIG1, PIG2, PIG3, PIG4)
 
@@ -215,10 +215,10 @@ library("gamlss.tr")
 dtPIG <- trun.d(par = 0, family = "PIG", type = "left")
 
 x <- 1:8
-tPIG1 <- data.frame(x = x, y = dtPIG(x, 1.5, 1), dist = "tPIG(1.5, 1)", stringsAsFactors= FALSE)
-tPIG2 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 4), dist = "tPIG(1.5, 2)", stringsAsFactors= FALSE)
-tPIG3 <- data.frame(x = x, y = dtPIG(x, 1.5, 0.1), dist = "tPIG(1.5, 0.1)", stringsAsFactors= FALSE)
-tPIG4 <- data.frame(x = x, y = dtPIG(x, 1.5, 0.3), dist = "tPIG(1.5, 0.3)", stringsAsFactors= FALSE)
+tPIG1 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 5), dist = "tPIG(1.5, 5)", stringsAsFactors= FALSE)
+tPIG2 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 1), dist = "tPIG(1.5, 1)", stringsAsFactors= FALSE)
+tPIG3 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 0.3), dist = "tPIG(1.5, 0.3)", stringsAsFactors= FALSE)
+tPIG4 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 0.1), dist = "tPIG(1.5, 0.1)", stringsAsFactors= FALSE)
 
 tPIG_prior <- rbind(tPIG1, tPIG2, tPIG3, tPIG4)
 
@@ -233,10 +233,10 @@ library("gamlss.tr")
 dtPIG <- trun.d(par = 0, family = "PIG", type = "left")
 
 x <- 1:8
-tPIG1 <- data.frame(x = x, y = dtPIG(x, 1.5, 1), dist = "tPIG(1.5, 1)", stringsAsFactors= FALSE)
-tPIG2 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 4), dist = "tPIG(1.5, 2)", stringsAsFactors= FALSE)
-tPIG3 <- data.frame(x = x, y = dtPIG(x, 1.5, 0.1), dist = "tPIG(1.5, 0.1)", stringsAsFactors= FALSE)
-tPIG4 <- data.frame(x = x, y = dtPIG(x, 1.5, 0.3), dist = "tPIG(1.5, 0.3)", stringsAsFactors= FALSE)
+tPIG1 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 5), dist = "tPIG(1.5, 5)", stringsAsFactors= FALSE)
+tPIG2 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 1), dist = "tPIG(1.5, 1)", stringsAsFactors= FALSE)
+tPIG3 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 0.3), dist = "tPIG(1.5, 0.3)", stringsAsFactors= FALSE)
+tPIG4 <- data.frame(x = x, y = dtPIG(x, mu = 1.5, sigma = 0.1), dist = "tPIG(1.5, 0.1)", stringsAsFactors= FALSE)
 
 tPIG_prior <- rbind(tPIG1, tPIG2, tPIG3, tPIG4)
 
@@ -320,7 +320,7 @@ par(mfcol = c(1,1))
 
 <br>
 
-* Full of details article
+* Technical article. Full of details
+* Easier with original code and data
+* Why not use a Sichel?
 * Curious about _Not for comercial use_
-* Great to have code and data with the article
-* Why not a Sichel? generalization with additional parameter

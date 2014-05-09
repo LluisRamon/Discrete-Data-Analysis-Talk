@@ -182,8 +182,8 @@ freq_chap5 &lt;-<span class="st"> </span><span class="kw">termFreq</span>(chap5)
 x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.1</span>, <span class="fl">2.5</span>, <span class="dt">by =</span> <span class="fl">0.02</span>)
 IG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="dv">5</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 5)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
 IG2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
-IG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
-IG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+IG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+IG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dIG</span>(x, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;IG(1, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
 
 IG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(IG1, IG2, IG3, IG4)
 
@@ -211,10 +211,10 @@ IG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(IG1, IG2, I
 <section class="slide level1">
 
 <pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">0</span>:<span class="dv">10</span>
-PIG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">5</span>, <span class="dv">5</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(5, 5)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+PIG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="dv">5</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 5)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
 PIG2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
-PIG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
-PIG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+PIG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+PIG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dPIG</span>(x, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;PIG(1, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
 
 PIG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(PIG1, PIG2, PIG3, PIG4)
 
@@ -251,10 +251,10 @@ PIG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(PIG1, PIG2
 dtPIG &lt;-<span class="st"> </span><span class="kw">trun.d</span>(<span class="dt">par =</span> <span class="dv">0</span>, <span class="dt">family =</span> <span class="st">&quot;PIG&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;left&quot;</span>)
 
 x &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">8</span>
-tPIG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="fl">1.5</span>, <span class="dv">1</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
-tPIG2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="dt">mu =</span> <span class="fl">1.5</span>, <span class="dt">sigma =</span> <span class="dv">4</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 2)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
-tPIG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="fl">1.5</span>, <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
-tPIG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="fl">1.5</span>, <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+tPIG1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="dt">mu =</span> <span class="fl">1.5</span>, <span class="dt">sigma =</span> <span class="dv">5</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 5)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+tPIG2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="dt">mu =</span> <span class="fl">1.5</span>, <span class="dt">sigma =</span> <span class="dv">1</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+tPIG3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="dt">mu =</span> <span class="fl">1.5</span>, <span class="dt">sigma =</span> <span class="fl">0.3</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 0.3)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
+tPIG4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> <span class="kw">dtPIG</span>(x, <span class="dt">mu =</span> <span class="fl">1.5</span>, <span class="dt">sigma =</span> <span class="fl">0.1</span>), <span class="dt">dist =</span> <span class="st">&quot;tPIG(1.5, 0.1)&quot;</span>, <span class="dt">stringsAsFactors=</span> <span class="ot">FALSE</span>)
 
 tPIG_prior &lt;-<span class="st"> </span><span class="kw">rbind</span>(tPIG1, tPIG2, tPIG3, tPIG4)
 
@@ -309,10 +309,10 @@ dadesP2 &lt;-<span class="st"> </span><span class="kw">sapply</span>(x, <span cl
 <h1>Personal opinion</h1>
 <p><br></p>
 <ul>
-<li>Full of details article</li>
+<li>Technical article. Full of details</li>
+<li>Easier with original code and data</li>
+<li>Why not use a Sichel?</li>
 <li>Curious about <em>Not for comercial use</em></li>
-<li>Great to have code and data with the article</li>
-<li>Why not a Sichel? generalization with additional parameter</li>
 </ul>
 <div class="references">
 
